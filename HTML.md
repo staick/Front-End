@@ -428,6 +428,8 @@ day01综合案例：[综合案例](./Basic/day01/example/17-综合案例/demo.ht
 
 ##### 自定义列表(重点)
 
+示例：[09-自定义列表](./Basic/day02/example/09-自定义列表.html)
+
 在HTML标签中，`<dl>`标签用于定义描述列表(或定义列表)，该标签会与`<dt>`(定义项目/名字)和`<dd>`(描述每一个项目/名字)一起使用。
 
 ```html
@@ -451,6 +453,8 @@ day01综合案例：[综合案例](./Basic/day01/example/17-综合案例/demo.ht
 
 ##### 表单域
 
+示例：[10-表单域](./Basic/day02/example/10-表单域.html)
+
 表单域是一个包含表单元素的区域。在HTML中使用`<form></from>`定义表单域。
 
 `<form>`会把它范围内的表单元素信息提交给服务器。
@@ -468,6 +472,8 @@ day01综合案例：[综合案例](./Basic/day01/example/17-综合案例/demo.ht
 ##### 表单控件(表单元素)
 
 ###### input输入表单元素
+
+示例：[11-input表单元素](./Basic/day02/11-input表单元素.html)
 
 在表单元素中`<input>`标签用于收集用户信息。
 
@@ -510,7 +516,55 @@ name表单元素的名字，要求单选按钮和复选框要有相同的name值
 
 ###### select下拉表单元素
 
+示例：[13-select下拉表单](./Basic/day02/example/13-select下拉表单.html)
+
+在页面中，如果有多个选项让用户选择，并且想要节约页面空间时，可以使用`<select>`标签控件定义下拉列表。
+
+```html
+<select>
+    <option>选项1</option>
+    <option>选项2</option>
+    <option>选项3</option>
+</select>
+```
+
+- `<select>`中至少包含一对`<option>`。
+- 在`<option>`中定义`select="select"`时，当前项即为默认选中项。
+
 ###### textarea文本域表单元素
+
+示例：[14-textarea文本域](./Basic/day02/example/14-textarea文本域.html)
+
+当用户输入内容较多的情况下，我们就不能使用文本框表单了，此时可以使用`<textarea>`标签。
+
+在表单元素中，`<textarea>`标签用于定义多行文本输入的控件。
+
+```html
+<form>
+    <textarea>标签中的文字会默认显示到文本域中</textarea>
+</form>
+```
+
+- `cols="每行中的字符数"`，`rows="显示的行数"`，==我们在实际开发中不会使用，都是用CSS来改变大小。==
+
+##### label标签
+
+示例：[12-label标签](./Basic/day02/example/12-label标签.html)
+
+`<label>`标签为input元素定义标注。
+
+`<label>`标签用于绑定一个表单域属，当点击`<label>`标签内的文本时，浏览器就会自动将焦点转到选择对应的表单元素上，用来增加用户体验。
+
+**通过将`<label>`标签的for属性指定与`<input>`标签的id属性相同，来链接两个标签**
+
+```html
+<label for="username">用户名：</label>
+<input type="text" id="username">
+```
+
+经过上述操作，只需要点击用户名，光标会自动定位到文本框里。
+
+综合案例：[15-综合案例注册页面](./Basic/day02/example/15-综合案例注册页面.html)
 
 ## VSCode的使用
 
