@@ -676,3 +676,150 @@ JS有三个逻辑运算符，与C语言一致：`&&`、`||`、`!`，也具有短
 
 ##### continue和break
 
+### 函数
+
+#### arguments的使用
+
+当我们不确定有多少个参数传递的时候，可以用arguments来获取。在JavaScript中，arguments实际上它是当前函数的一个内置对象。所有函数都内置了一个对象arguments对象，arguments对象中存储了传递的所有实参。
+
+arguments是以伪数组的形式展示的。伪数组并不是真正的数组，它有一下三个特性：
+
+1. 具有数组的`length`属性
+2. 按照索引的方式进行存储
+3. 没有真正数组的一些方法，如`pop()`、`push()`等
+
+### 作用域
+
+ES6之前JavaScript中没有块级作用域，只有全局作用域和局部作用域(由于没有块级作用域，所有只有函数作用域)。
+
+#### 作用域链
+
+内部函数访问外部函数的变量，采取的是链式查找的方式来决定取哪个值，这种结构称为作用域链。
+
+### 预解析
+
+JavaScript代码是由浏览器中的JavaScript解析器来执行的。JavaScript解析器在运行JavaScript代码的时候分为两步：预解析和代码执行。
+
+```js
+f1();
+console.log(c);
+console.log(b);
+console.log(a);
+
+function f1() {
+    var a = b = c = 9;
+    // 相当于 var a = 9; b = 9; c = 9; b和c直接赋值，没有声明，当全局变量看
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+// 相当于
+function f1() {
+    var a;
+    a = b = c = 9;
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+
+f1();
+console.log(c);
+console.log(b);
+console.log(a);
+```
+
+### 对象
+
+在JavaScript，对象是一组无序的属性和方法的集合，所有的事物都是对象，例如字符串、数值、数组、函数等。
+
+#### 创建对象
+
+在JavaScript中，现阶段可以采用三种方式创建对象：
+
+- 利用字面量创建对象
+
+- 利用`new Object` 创建对象
+
+- 利用构造函数创建对象
+
+##### 利用字面量创建对象
+
+```js
+var obj = {
+    uname: '张三丰',
+    age: 18,
+    sex: '男',
+    sayHi: function() {
+        console.log('hi~');
+    }
+}
+```
+
+- 里面的属性或方法我们采用键值对的形式，`键: 值;`
+- 多个属性或者方法之间用逗号隔开
+- 方法冒号后面跟的是一个匿名函数
+
+##### 利用new Object创建对象
+
+```js
+var obj = new Object();  // 创建了一个空的对象
+obj.uname = '张三丰';
+obj.age = 18;
+obj.sex = '男';
+obj.sayHi = function() {
+    console.log('hi~');
+}
+```
+
+##### 利用构造函数创建对象
+
+上面两种方式一次只能创建一个对象。
+
+```js
+function Star(uname, age, sex) {
+    this.name = uname;
+    this.age = age;
+    this.sex = sex;
+}
+
+var ldh = new Star('刘德华', 18, '男');
+```
+
+- 构造函数名字首字母要大写
+- 构造函数不需要`return`就可以返回结果
+- 要调用构造函数，必须使用`new`
+- 只要`new Star()`调用函数就创建一个对象
+
+#### 使用对象
+
+调用对象的属性，有两种方式：
+
+- 采用`对象名.属性名`
+
+  ```js
+  console.log(obj.uname);
+  ```
+
+- 采用`对象名['属性名']`
+
+  ```js
+  console.log(obj['age']);
+  ```
+
+调用对象的方法`对象名.方法名()`
+
+```js
+obj.sayHi();
+```
+
+`new`的执行过程：
+
+1. `new`构造函数在内存中创建了一个空的对象
+2. `this`指向刚才创建的空对象
+3. 执行构造函数里面的代码，给这个空对象添加属性和方法
+4. 返回这个对象
+
+#### 内置对象
+
+
+
