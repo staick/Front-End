@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .login {
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+            color: white;
+            line-height: 20px;
+            text-align: center;
+            background-color: rgb(9, 180, 248);
+        }
+
+        .onfocus {
+            outline-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="邮箱/ID/手机号" id="username">
+        <input type="password" placeholder="密码" id="password">
+        <button class="login">登录</button>
+    </div>
+    <script>
+        var username = document.getElementById('username');
+        var password = document.getElementById('password');
+        var btn = document.querySelector('.login');
+
+        username.onfocus = function() {
+            if (this.placeholder === '邮箱/ID/手机号') {
+                this.placeholder = '';
+            }
+            this.className = 'onfocus';
+        }
+
+        username.onblur = function() {
+            if (this.placeholder === '') {
+                this.placeholder = '邮箱/ID/手机号';
+            }
+        }
+
+        password.onfocus = function() {
+            if (this.placeholder === '密码') {
+                this.placeholder = '';
+            }
+            this.className = 'onfocus';
+        }
+
+        password.onblur = function() {
+            if (this.placeholder === '') {
+                this.placeholder = '密码';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>纵有疾风起，人生不言弃1</li>
+        <li>纵有疾风起，人生不言弃2</li>
+        <li>纵有疾风起，人生不言弃3</li>
+        <li>纵有疾风起，人生不言弃4</li>
+        <li>纵有疾风起，人生不言弃5</li>
+        <li>纵有疾风起，人生不言弃6</li>
+    </ul>
+    <ol>
+        <li>孙悟空</li>
+        <li>猪八戒</li>
+        <li>沙和尚</li>
+        <li>唐三藏</li>
+        <li>白龙马</li>
+    </ol>
+    <script>
+        // 返回的是获取过来元素对象的集合 以伪数组的形式存储的
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);
+        console.log(lis[0]);
+
+        for (var e in lis) {
+            console.log(lis[e]);
+        }
+
+        // 如果页面中只有一个li，返回的还是伪数组形式
+        // 如果页面中没有这个元素，返回一个空的伪数组
+
+        var ol = document.getElementsByTagName('ol');
+        console.log(ol[0].getElementsByTagName('li'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav {
+            background-color: pink;
+        }
+
+        .nav li {
+            float: left;
+            width: 82px;
+            height: 34px;
+            text-align: center;
+            line-height: 34px;
+            background-color: aqua;
+        }
+
+        .dropdown {
+            width: 78px;
+            height: 31px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav">
+            <li>
+                微博
+                <ul style="display: none;" class="dropdown">
+                    <li>私信</li>
+                    <li>评论</li>
+                    <li>@我</li>
+                </ul>
+            </li>
+            <li>博客</li>
+            <li>邮箱</li>
+        </ul>
+    </nav>
+
+    <script>
+        var nav = document.querySelector('.nav');
+        var dropdown = document.querySelector('.dropdown');
+        nav.onmouseenter = function() {
+            dropdown.style.display = 'block';
+        }
+        nav.onmouseout = function() {
+            dropdown.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>显示当前系统时间</button>
+    <div>某个时间</div>
+    <p>123</p>
+    <script>
+        var btn = document.querySelector('button');
+        var div = document.querySelector('div');
+
+        btn.onclick = function () {
+            div.innerText = getTime();
+        }
+
+        function getTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var dates = date.getDate();
+
+            var hour = date.getHours();
+            hour = hour > 10 ? hour : '0' + hour;
+            var min = date.getMinutes();
+            min = min > 10 ? min : '0' + min;
+            var sec = date.getSeconds();
+            sec = sec > 10 ? sec : '0' + sec;
+            time = year + '-' + month + '-' + dates + ' ' + hour + ':' + min + ':' + sec;
+            return time
+        }
+
+        var p = document.querySelector('p');
+        p.innerText = 'Hello World!';
+    </script>
+</body>
+
+</html>
