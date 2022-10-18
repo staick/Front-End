@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我是节点</div>
+    <span>我是span</span>
+    <ul>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+    </ul>
+    <div class="box">
+        <span class="qrcode">x</span>
+    </div>
+    <script>
+        var ul = document.querySelector('ul');
+        console.log(ul.childNodes);  // 要判断nodeType，比较麻烦
+
+        // 非标准，常用
+        console.log(ul.children);
+        
+    </script>
+</body>
+</html>

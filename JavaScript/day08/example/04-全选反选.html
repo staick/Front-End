@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 400px;
+            height: 250px;
+            margin: 100px auto;
+        }
+
+        thead {
+            background-color: skyblue;
+            height: 50px;
+            color: #fff;
+        }
+
+        tbody {
+            background-color: #eee;
+        }
+
+        tbody tr {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" name="" id="select-all"></th>
+                <th>商品</th>
+                <th>价钱</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>iPhone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>iPad Pro</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>iPad Air</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Apple Watch</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var selectAll = document.getElementById('select-all');
+        var checkbox = document.querySelector('tbody').getElementsByTagName('input');
+        selectAll.onclick = function() {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = this.checked;
+            }
+        }
+
+        for (var i = 0; i < checkbox.length; i++) {
+            checkbox[i].onclick = function() {
+                var flag = true;
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (!checkbox[i].checked) {
+                        flag = false;
+                    }
+                }
+                selectAll.checked = flag;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea name="" id="" placeholder="请输入评论"></textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        var btn = document.querySelector('button');
+        var text = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+        btn.onclick = function () {
+            if (text.value === '') {
+                alert('输入不能为空');
+                return false;
+            } else {
+                var li = document.createElement('li');
+                li.innerHTML = text.value;
+                text.value = '';
+                // ul.appendChild(li);
+                ul.insertBefore(li, ul.children[0]);
+            }
+        }
+    </script>
+</body>
+
+</html>
