@@ -1054,3 +1054,199 @@ ul.appendChild(li);
 ul.insertBefore(li, ul.children[0]);
 ```
 
+#### 删除节点
+
+示例：[01-节点操作之删除节点](./JavaScript/day09/example/01-节点操作之删除节点.html)
+
+使用`node.removeChild(child)`来删除子节点。
+
+#### 克隆节点
+
+示例：[03-节点操作之复制节点](./JavaScript/day09/example/03-节点操作之复制节点.html)
+
+使用`node.cloneNode()`来克隆节点。
+
+- 如果括号参数为空或为`false`，则为浅拷贝，只克隆节点本身，不可能里面的子节点。
+- 如果括号参数为`true`，则为深拷贝，即克隆节点本身又克隆子节点。
+
+#### 三种创建元素的方式
+
+示例：[05-三种创建元素方式区别](./JavaScript/day09/example/05-三种创建元素方式区别.html)
+
+- `document.write()`
+- `element.innerHTML`
+- `document.createElement()`
+
+##### 区别
+
+1. `document.write`是直接将内容写入到页面的内容流，**但是文档执行完毕，则它会导致页面全部重绘**。
+2. `innerHTML`是将内容写入到某个DOM节点，不会导致页面全部重绘。
+3. `innerHTML`创建多个元素效率更高(不要拼接字符串，采取数组形式拼接)，结构稍微复杂。
+4. `createElement()`创建多个元素效率稍微低一点点，但是结构清晰。
+
+### 事件
+
+#### 注册事件
+
+示例：[06-注册事件的两种方式](./JavaScript/day09/example/06-注册事件的两种方式.html)
+
+给元素添加事件，成为注册时间或者绑定事件。注册事件有两种方式：传统注册方式和方法监听注册方式
+
+##### 传统注册方式
+
+- 利用`on`开头的事件`onclick`
+- 特点：注册事件的**唯一性**
+- 同一个元素同一个事件只能设置一个处理函数，最后注册的处理函数将会覆盖前面注册的处理函数。
+
+##### 方法监听注册方式
+
+- w3c标准，推荐方式
+- `addEventListener()`，是一个方法
+- IE9之前的IE不支持此方法，可使用`attachEvent()`代替
+- 特点：同一个元素同一个事件可以注册多个监听器
+- 按注册顺序依次执行
+
+`eventTarget.addEventListener(type, listener[, useCapture])`：将指定的监听器注册到`eventTarget`上，当该对象触发指定的事件时，就会执行事件处理函数。
+
+- `type`：事件类型字符串，比如`click`、`mouseover`，注意不用带`on`
+- `listener`：事件处理函数，事件发生时，会调用该监听函数
+- `useCapture`：可选参数，是一个布尔值，默认是`false`。
+
+#### 删除事件
+
+示例：[07-删除事件](./JavaScript/day09/example/07-删除事件.html)
+
+##### 传统注册方式
+
+`eventTarget.onclick = null;`
+
+##### 方法监听注册方式
+
+`eventTarget.removeEventListener(type, listener[, useCapture]);`
+
+#### DOM事件流
+
+示例：[08-DOM事件流三个阶段](./JavaScript/day09/example/08-DOM事件流三个阶段.html)
+
+事件发生时会在元素节点之间按照特定的顺序传播，这个传播过程即DOM事件流。
+
+- JS代码中只能执行捕获或者冒泡其中的一个阶段
+- `onclick`和`attachEvent`只能得到冒泡阶段
+- `addEventListener(type, listener[, useCapture])`第三个参数如果是`true`，表示在事件捕获阶段调用事件处理程序；如果是`false`(默认)，表示事件冒泡阶段调用事件处理程序。
+- **实际开发中很少使用事件捕获，更关注事件冒泡**
+- **有些事件没有冒泡，比如`onblur`、`onfocus`、`onmouseenter`、`onmouseleave`**
+- **事件冒泡有时候会带来麻烦，有时候又会帮助很巧妙的做某些事件**
+
+#### 事件对象
+
+示例：[09-事件对象](./JavaScript/day09/example/09-事件对象.html)
+
+1. event就是一个事件对象，写到我们监听函数小括号里，当形参
+2. 事件对象只有有了事件才会存在，它是系统给我们自动创建的，不需要我们传递参数
+3. 事件对象是我们事件的一系列相关数据的集合，跟事件相关的，比如鼠标点击里面就包含了鼠标的相关信息：鼠标坐标，如果是键盘事件，里面就包含键盘事件的信息，如用于按下了哪个键
+
+可以使用`e.target`获得事件对象，它有时候和`this`获得的对象相同，但需要注意，`e.target`返回的是出发事件对象，`this`返回的是绑定事件对象。
+
+#### 阻止默认事件
+
+示例：[11-事件对象阻止默认行为](./JavaScript/day09/example/11-事件对象阻止默认行为.html)
+
+我们使用`e.preventDefault();`可以阻止一些默认事件，如链接跳转、表单提交。
+
+对于ie9以下的浏览器，采用`e.returnValue;`
+
+使用`return false`也可以达到相同的效果，且没有兼容问题，但会使return后面的代码不执行，且不能用于方法监听方式中。
+
+#### 阻止冒泡
+
+示例：[12-阻止事件冒泡](./JavaScript/day09/example/12-阻止事件冒泡.html)
+
+事件冒泡有时会带来坏处，
+
+`e.stopPropagation();`
+
+低版本浏览器使用`e.cancleBubble = true;`来阻止冒泡
+
+#### 事件委托
+
+示例：[13-事件委托](./JavaScript/day09/example/13-事件委托.html)
+
+事件冒泡出来，有时也会带来好处
+
+事件委托也称为事件代理，在jQuery里面称为事件委派。
+
+**不是每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点。**
+
+事件委托的作用：只操作了一次DOM，提高了程序的性能。
+
+#### 常用鼠标事件
+
+示例：[14-常见鼠标事件](./JavaScript/day09/example/14-常见鼠标事件.html)
+
+##### 禁止鼠标右键菜单
+
+`contextmenu`主要控制应该何时显示上下文菜单，主要用于程序员取消默认的上下文菜单
+
+```js
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+```
+
+##### 禁止鼠标选中
+
+```js
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
+```
+
+#### 鼠标事件对象
+
+示例：[15-鼠标事件对象](./JavaScript/day09/example/15-鼠标事件对象.html)
+
+`event`对象代表事件的状态，跟事件相关的一系列信息的集合。现阶段我们主要用鼠标事件对象`MouseEvent`和键盘事件对象`KeyboardEvent`。 
+
+##### 获取鼠标的可视区的坐标
+
+- `e.clientX`：获取x坐标
+- `e.clientY`：获取y坐标
+
+##### 获取鼠标在文档页面的坐标
+
+- `e.pageX`：获取x坐标
+- `e.pageY`：获取y坐标
+
+##### 获取鼠标在电脑屏幕的坐标
+
+- `e.screenX`：获取x坐标
+- `e.screenY`：获取y坐标
+
+#### 常用键盘事件
+
+| 键盘事件     | 触发条件                                                    |
+| :----------- | :---------------------------------------------------------- |
+| `onkeyup`    | 按键被松开时触发                                            |
+| `onkeydown`  | 按键被按下时触发                                            |
+| `onkeypress` | 按键被按下时触发，**但不能识别功能键，如ctrl shift 箭头等** |
+
+三个事件的执行顺序：`onkeydown -> onkeypress -> onkeyup`
+
+#### 键盘事件对象
+
+**`onkeydown`和`onkeyup`不区分字母大小写，`onkeypress`区分字母大小写。在实际开发中，更多的使用`keydown`和`keyup`，它能识别所有的键，`keypress`不能识别功能键，但是`keyCode`属性能区分大小写，返回不同的ASCII值。**
+
+==keydown和keypress在文本框里面的特点：他们两个事件触发的时候，文字还没有落入文本框中。==
+
+==keyup事件触发的时候，文字已经落入文本框里面了==
+
+## BOM
+
+BOM包括DOM
+
+### BOM的构成
+
+window对象是浏览器的顶级对象，它具有双重角色。
+
+1. 它是JS访问浏览器窗口的一个接口
+2. 它是一个全局对象。定义在全局作用域中的变量、函数都会变成window对象的属性和方法。
