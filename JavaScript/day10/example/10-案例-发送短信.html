@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    手机号码：<input type="text"> <button>发送短信</button>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            btn.disabled = true;
+            var second = 10;
+            var timer = setInterval(function () {
+                if (!second) {
+                    clearInterval(timer);
+                    btn.disabled = false;
+                    btn.innerHTML = '发送短信';
+                } else {
+                    second--;
+                    btn.innerHTML = '还剩下' + second + '秒';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

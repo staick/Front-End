@@ -1246,7 +1246,124 @@ BOM包括DOM
 
 ### BOM的构成
 
-window对象是浏览器的顶级对象，它具有双重角色。
+**window**对象是浏览器的顶级对象，它具有双重角色。
 
 1. 它是JS访问浏览器窗口的一个接口
 2. 它是一个全局对象。定义在全局作用域中的变量、函数都会变成window对象的属性和方法。
+
+#### 窗口加载事件
+
+```js
+window.onload = fucntion() {}
+或
+window.addEventListener('load', function(){});
+```
+
+`window.onload`是窗口加载事件，当文档内容完全加载完全会触发该事件(包括图像、脚本文件、CSS文件等)，就调用的处理函数。
+
+有了`window.onload`就可以把JS代码写到页面元素的上方，因为`onload`是等页面内容全部加载完毕，再去执行处理函数。
+
+#### 窗口加载事件
+
+```js
+document.addEventListener('DOMContentLoaded', function() {})
+```
+
+`DOMContentLoaded`事件触发时，仅当DOM加载完成，不包括样式表，图片，flash等。IE9以上支持
+
+如果页面的图片很多，从用户访问到`onload`触发可能需要较长的事件，交互效果就不能实现，必然影响用户的体验，此时用`DOMContentLoaded`事件比较合适。
+
+#### 调整窗口大小事件
+
+```js
+window.addEventListener('resize', function() {})
+```
+
+`window.onresize`是调整窗口大小加载事件，当触发时就调用的处理函数。
+
+- 只要窗口大小发生像素变化，就会触发这个事件
+- 经常利用这个事件完成响应式布局。`window.innerWidth`当前屏幕的宽度
+
+#### 定时器
+
+`window`对象给我们提供了2个非常好用的方法-定时器。
+
+- `setTimeout()`
+- `setInterval()`
+
+##### setTimeout()定时器
+
+`window.setTimeout(调用函数, [延迟的毫秒数]);`
+
+`setTimeout()`方法用于设定一个定时器，该定时器在定时器到期后执行调用函数。
+
+- `window`可以省略
+- 这个调用函数可以直接写函数，或者函数名或者采取字符串`函数名()`三种形式，第三种不推荐
+- 延迟的毫秒数省略默认是0，如果写，单位是毫秒
+- 因为定时器有很多，为了便于区别，可以使用`var time1 = setTimeout()`的形式给定时器起别名。
+
+##### 停止setTimeout()定时器
+
+`window.clearTimeout(timeoutID)`
+
+##### setInterval()定时器
+
+`window.setInterval(回调函数, [间隔的毫秒数]);`
+
+`setInterval()`方法重复调用一个函数，每隔这个时间，就去调用一次回调函数。
+
+#### this
+
+- 在全局作用域或者普通函数中`this`指向全局对象`window`
+
+#### 同步和异步
+
+同步任务都在主线程上执行，形成一个执行栈。
+
+JS的异步是通过回调函数实现的。
+
+一般而言，异步任务有以下三种类型：
+
+1. 普通事件，如`click`、`resize`等
+2. 资源加载，如`load`、`error`等
+3. 定时器，包括`setInterval`、`setTimeout`等
+
+##### JS的执行机制
+
+1. 先执行执行栈中的同步任务
+2. 异步任务(回调函数)放入任务队列中。
+3. 一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取任务队列中的异步任务，于是被读取的异步任务结束等待状态，进入执行栈，开始执行。
+
+#### location
+
+window对象给我们提供了一个`location`属性用于获取或设置窗体的URL，并且可以用于解析URL。因为这个属性返回的是一个对象，所以我们将这个属性也成为`loacation`对象。
+
+| location对象属性    | 返回值                          |
+| ------------------- | ------------------------------- |
+| `location.href`     | 获取或者设置整个URL             |
+| `location.host`     | 返回主机名                      |
+| `location.port`     | 返回端口号 如果未写返回空字符串 |
+| `location.pathname` | 返回路径                        |
+| `location.search`   | 返回参数                        |
+| `location.hash`     | 返回片段                        |
+
+`location`方法
+
+| location对象方法     | 描述 |
+| -------------------- | ---- |
+| `location.assign()`  |      |
+| `location.replace()` |      |
+| `location.reload()`  |      |
+
+#### navigator
+
+`navigator`对象包含有关浏览器的信息，它有很多属性，最常用的是`userAgent`，该属性可以返回由客户端发送服务器的`user-agent`头部的值。
+
+#### history
+
+| history对象方法 | 作用                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `back()`        | 后退功能                                                     |
+| `forward()`     | 前进功能                                                     |
+| `go(参数)`      | 前进后退功能，如果参数是1，前进1个页面，如果是-1，后退一个ye'mian |
+
